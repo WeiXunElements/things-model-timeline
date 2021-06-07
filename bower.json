@@ -2,11 +2,10 @@
   "name": "things-model-timeline",
   "homepage": "https://github.com/ThingsElements/things-model-timeline",
   "authors": [
-    "c.s <chunseop@gmail.com>"
+    "Shenzhen Weixun"
   ],
   "description": "for things-label,things-point",
   "main": "elements.html",
-  "license": "http://things-scene.hatiolab.com/EULA/",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -14,5 +13,5 @@
     "test",
     "tests"
   ],
-  "version": "3.0.3"
+  "version": "3.0.4"
 }

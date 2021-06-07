@@ -1,17 +1,17 @@
-<!doctype html>
+<!DOCTYPE html>
 <!--
 @license
-Copyright © HatioLab Inc. All rights reserved.  
+Copyright © 2015-2021 Shenzhen Weixun All rights reserved.
 -->
-<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../polymer/polymer.html" />
 
-<link rel="import" href="../iron-signals/iron-signals.html">
-<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../iron-signals/iron-signals.html" />
+<link rel="import" href="../paper-button/paper-button.html" />
 
-<link rel="import" href="../things-ajax/things-ajax.html">
-<link rel="import" href="../things-global-behavior/things-global-behavior.html">
-<link rel="import" href="../things-i18n-msg/things-i18n-msg.html">
-<link rel="import" href="../things-msg-box-behavior/things-msg-box-behavior.html">
+<link rel="import" href="../things-ajax/things-ajax.html" />
+<link rel="import" href="../things-global-behavior/things-global-behavior.html" />
+<link rel="import" href="../things-i18n-msg/things-i18n-msg.html" />
+<link rel="import" href="../things-msg-box-behavior/things-msg-box-behavior.html" />
 
 <!--
   이벤트 정보 페이지
@@ -34,7 +34,7 @@ Copyright © HatioLab Inc. All rights reserved.
 
       .event-info img {
         border-radius: 7px;
-        border: 1px solid rgba(0, 0, 0, .1);
+        border: 1px solid rgba(0, 0, 0, 0.1);
         margin-bottom: 10px;
         max-width: 100%;
         max-height: 500px;
@@ -43,7 +43,7 @@ Copyright © HatioLab Inc. All rights reserved.
 
       .event-info div {
         padding: 3px 0;
-        overflow: hidden
+        overflow: hidden;
       }
 
       .event-info div label {
@@ -61,7 +61,7 @@ Copyright © HatioLab Inc. All rights reserved.
         padding-left: 1%;
         text-align: left;
         font-size: 12px;
-        line-height: 1.5
+        line-height: 1.5;
       }
 
       .btns {
@@ -72,25 +72,25 @@ Copyright © HatioLab Inc. All rights reserved.
 
       #preview {
         height: 300px;
-        @apply(--layout-vertical);
+        @apply (--layout-vertical);
       }
 
       things-scene-view {
-        @apply(--layout-flex)
+        @apply (--layout-flex);
       }
 
       paper-button {
-        @apply(--things-button)
+        @apply (--things-button);
       }
 
       paper-button.important {
-        @apply(--things-button-important)
+        @apply (--things-button-important);
       }
 
-      @media only all and (max-width:600px) {
+      @media only all and (max-width: 600px) {
         .btns paper-button {
           padding: 9px 7px 7px 7px;
-          margin: 0 0 5px 0
+          margin: 0 0 5px 0;
         }
       }
     </style>
@@ -122,7 +122,7 @@ Copyright © HatioLab Inc. All rights reserved.
         <span>[[event.updater.name]]</span>
       </div>
 
-      <template is="dom-if" if={{approverName(event)}}>
+      <template is="dom-if" if="{{approverName(event)}}">
         <div class="info-cell">
           <label>
             <things-i18n-msg msgid="label.confirmer" auto>confirmer</things-i18n-msg>
@@ -145,7 +145,7 @@ Copyright © HatioLab Inc. All rights reserved.
         <span>[[event.updated_at]]</span>
       </div>
 
-      <template is="dom-if" if={{event.released_at}}>
+      <template is="dom-if" if="{{event.released_at}}">
         <div class="info-cell">
           <label>
             <things-i18n-msg msgid="label.released_at" auto>Released At</things-i18n-msg>
@@ -184,75 +184,64 @@ Copyright © HatioLab Inc. All rights reserved.
       </template>
     </div>
 
-    <things-i18n-msg msgid="label.rename" msg = {{lRename}} auto hidden>Rename</things-i18n-msg>
+    <things-i18n-msg msgid="label.rename" msg="{{lRename}}" auto hidden>Rename</things-i18n-msg>
 
     <things-label-copy id="label-copy" object="[[object]]" groups="[[groups]]"></things-label-copy>
 
-    <things-new-dialog id="renameDialog"
-                       title= "[[lRename]]"
-                       groups="[[groups]]"
-                       group="[[object.group_id]]"
-                       title="[[lChangeInfo]]"
-                       group-disabled="true"
-                       description="[[object.description]]"
-                       on-things-new-dialog-closed="onDialogClosed">
+    <things-new-dialog
+      id="renameDialog"
+      title="[[lRename]]"
+      groups="[[groups]]"
+      group="[[object.group_id]]"
+      title="[[lChangeInfo]]"
+      group-disabled="true"
+      description="[[object.description]]"
+      on-things-new-dialog-closed="onDialogClosed"
+    >
     </things-new-dialog>
 
-    <things-ajax
-      id="version-up"
-      resource-url="[[versionUpUrl]]"
-      method="POST"
-      content-type="application/json">
+    <things-ajax id="version-up" resource-url="[[versionUpUrl]]" method="POST" content-type="application/json">
     </things-ajax>
 
     <things-ajax
       id="save-label"
       resource-url="[[saveUrl]]"
-      resource-id = "[[object.id]]"
+      resource-id="[[object.id]]"
       method="PUT"
-      content-type="application/json">
+      content-type="application/json"
+    >
     </things-ajax>
 
     <things-ajax
       id="request-confirm"
       resource-url="[[requestApprovalUrl]]"
       method="PUT"
-      content-type="application/json">
+      content-type="application/json"
+    >
     </things-ajax>
 
     <things-ajax
       id="cancel-request-confirm"
       resource-url="[[cancelRequestApprovalUrl]]"
       method="PUT"
-      content-type="application/json">
+      content-type="application/json"
+    >
     </things-ajax>
 
-    <things-ajax
-      id="confirm"
-      resource-url="[[releaseUrl]]"
-      method="PUT"
-      content-type="application/json">
-    </things-ajax>
+    <things-ajax id="confirm" resource-url="[[releaseUrl]]" method="PUT" content-type="application/json"> </things-ajax>
 
-    <things-ajax
-      id="delete"
-      resource-url="[[deleteUrl]]"
-      method="DELETE"
-      content-type="application/json">
+    <things-ajax id="delete" resource-url="[[deleteUrl]]" method="DELETE" content-type="application/json">
     </things-ajax>
   </template>
 
   <script>
-    (function() {
+    (function () {
       'use strict';
 
       Polymer({
         is: 'things-timeline-event-info',
 
-        behaviors: [
-          Things.GlobalBehavior,
-          Things.MsgBoxBehavior
-        ],
+        behaviors: [Things.GlobalBehavior, Things.MsgBoxBehavior],
 
         properties: {
           /**
@@ -260,63 +249,63 @@ Copyright © HatioLab Inc. All rights reserved.
            */
           resourceUrl: {
             type: String,
-            observer: 'resourceUrlChange'
+            observer: 'resourceUrlChange',
           },
 
           /**
            * Version up url
            */
           versionUpUrl: {
-            type: String
+            type: String,
           },
 
           /**
            * Request release url
            */
           requestApprovalUrl: {
-            type: String
+            type: String,
           },
 
           /**
            * Cancel request release url
            */
           cancelRequestApprovalUrl: {
-            type: String
+            type: String,
           },
 
           /**
            * Release url
            */
           releaseUrl: {
-            type: String
+            type: String,
           },
 
           /**
            * Delete url
            */
           deleteUrl: {
-            type: String
+            type: String,
           },
 
           /**
            * ?
            */
           object: {
-            notify: true
+            notify: true,
           },
 
           /**
            * 그룹 리스트 바인딩 모델
            */
           groups: {
-            notify: true
+            notify: true,
           },
 
           /**
            * 타임라인 이벤트 리스트 - Label, Scene 버전 리스트
            */
           events: {
-            notify: true
+            notify: true,
           },
 
           /**
@@ -324,7 +313,7 @@ Copyright © HatioLab Inc. All rights reserved.
            */
           event: {
             notify: true,
-            observer: 'eventChanged'
+            observer: 'eventChanged',
           },
 
           /**
@@ -332,7 +321,7 @@ Copyright © HatioLab Inc. All rights reserved.
            */
           model: {
             notify: true,
-            computed: 'evalModel(object)'
+            computed: 'evalModel(object)',
           },
 
           /**
@@ -340,7 +329,7 @@ Copyright © HatioLab Inc. All rights reserved.
            */
           isEditMode: {
             type: Boolean,
-            value: false
+            value: false,
           },
 
           /**
@@ -348,7 +337,7 @@ Copyright © HatioLab Inc. All rights reserved.
            */
           isApprovalMode: {
             type: Boolean,
-            value: false
+            value: false,
           },
 
           /**
@@ -356,8 +345,8 @@ Copyright © HatioLab Inc. All rights reserved.
            */
           isReleaseMode: {
             type: Boolean,
-            value: false
-          }
+            value: false,
+          },
         },
 
         listeners: {
@@ -366,25 +355,25 @@ Copyright © HatioLab Inc. All rights reserved.
           'confirm.things-ajax-response': 'refreshCurrentEvent',
           'version-up.things-ajax-response': 'refreshCurrentEvent',
           'delete.things-ajax-response': '_onDeleteLabelSuccess',
-          'save-label.things-ajax-response' : 'refreshCurrentEvent'
+          'save-label.things-ajax-response': 'refreshCurrentEvent',
         },
 
         /**
          * Compute all url
          */
-        resourceUrlChange: function(resourceUrl) {
+        resourceUrlChange: function (resourceUrl) {
           // version up url
           this.versionUpUrl = resourceUrl + '/:id/version_up';
           // request approval url
-          this.requestApprovalUrl = resourceUrl + '/:id/request_approval'
+          this.requestApprovalUrl = resourceUrl + '/:id/request_approval';
           // cancel request approval url
-          this.cancelRequestApprovalUrl = resourceUrl + '/:id/cancel_request_approval'
+          this.cancelRequestApprovalUrl = resourceUrl + '/:id/cancel_request_approval';
           // release url
-          this.releaseUrl = resourceUrl + '/:id/release'
+          this.releaseUrl = resourceUrl + '/:id/release';
           // delete url
-          this.deleteUrl = resourceUrl + '/:id',
-          // save url
-          this.saveUrl = resourceUrl+'/:id'
+          (this.deleteUrl = resourceUrl + '/:id'),
+            // save url
+            (this.saveUrl = resourceUrl + '/:id');
         },
 
         /**
@@ -392,7 +381,7 @@ Copyright © HatioLab Inc. All rights reserved.
          *
          * @param {Object} user
          */
-        isDeployUser: function(user) {
+        isDeployUser: function (user) {
           return user && (user.super_user || user.admin_flag);
         },
 
@@ -401,24 +390,24 @@ Copyright © HatioLab Inc. All rights reserved.
          *
          * @param {Object} user
          */
-        isDesignUser: function(user) {
-          return (user && user.exclusive_role && user.exclusive_role == 'modeler');
+        isDesignUser: function (user) {
+          return user && user.exclusive_role && user.exclusive_role == 'modeler';
         },
 
         /**
          * 승인자 이름
          */
-        approverName: function(event) {
+        approverName: function (event) {
           return event && event.approver ? event.approver.name : '';
         },
 
         /**
          * 이미지 다운로드 URL 계산
          */
-        computeImgSrc: function(baseUrl, src) {
+        computeImgSrc: function (baseUrl, src) {
           var src = `${baseUrl}/download/${src}`;
           if (this.event) {
-            src += '?dc=' + this.event.updated_at
+            src += '?dc=' + this.event.updated_at;
           }
 
           return src;
@@ -427,34 +416,32 @@ Copyright © HatioLab Inc. All rights reserved.
         /**
          * 모델 변경시 ...
          */
-        evalModel: function(object) {
-          if (object && object.model)
-            return eval("(" + object.model + ")");
-          else
-            return { components: [] };
+        evalModel: function (object) {
+          if (object && object.model) return eval('(' + object.model + ')');
+          else return { components: [] };
         },
 
         /**
          * Version changed
          */
-        eventChanged: function(value) {
+        eventChanged: function (value) {
           if (value) {
-            this.isEditMode = (value.status == 'EDIT');
-            this.isApprovalMode = (value.status == 'APPROVAL');
-            this.isReleaseMode = (value.status == 'RELEASED');
+            this.isEditMode = value.status == 'EDIT';
+            this.isApprovalMode = value.status == 'APPROVAL';
+            this.isReleaseMode = value.status == 'RELEASED';
           }
         },
 
         /**
          * Format Date Data
          */
-        formatEventDate: function(date) {
+        formatEventDate: function (date) {
           if (!date) {
             return date;
-          } else if (typeof(date) == 'number') {
-            return new Date(date).toISOString().substring(0, 10)
-          } else if (typeof(date) == 'object') {
-            return date.toISOString().substring(0, 10)
+          } else if (typeof date == 'number') {
+            return new Date(date).toISOString().substring(0, 10);
+          } else if (typeof date == 'object') {
+            return date.toISOString().substring(0, 10);
           } else {
             return date;
           }
@@ -463,19 +450,19 @@ Copyright © HatioLab Inc. All rights reserved.
         /**
          * 이름 수정
          */
-        onTapRename: function(e){
+        onTapRename: function (e) {
           this.$['renameDialog'].show();
         },
 
         /**
          * 이름 수정 저장 시
          */
-        onDialogClosed: function(e) {
+        onDialogClosed: function (e) {
           var renameObject = this.$['renameDialog'].object;
 
-          if(e.detail.confirmed && renameObject) {
+          if (e.detail.confirmed && renameObject) {
             var saveRequesst = this.$['save-label'];
-            saveRequesst.body = {description: renameObject.description}
+            saveRequesst.body = { description: renameObject.description };
             saveRequesst.generateRequest();
           }
         },
@@ -483,50 +470,70 @@ Copyright © HatioLab Inc. All rights reserved.
         /**
          * 승인 요청
          */
-        onTapRequestConfirm: function(e) {
-          this.doTransaction(Things.DataGlobal.t('button.request-confirm'), Things.DataGlobal.t('text.want-to-request-confirm'), 'request-confirm');
+        onTapRequestConfirm: function (e) {
+          this.doTransaction(
+            Things.DataGlobal.t('button.request-confirm'),
+            Things.DataGlobal.t('text.want-to-request-confirm'),
+            'request-confirm'
+          );
         },
 
         /**
          * 승인 요청 취소
          */
-        onTapCancelRequestConfirm: function(e) {
-          this.doTransaction(Things.DataGlobal.t('button.cancel-request-confirm'), Things.DataGlobal.t('text.want-to-cancel-request-confirm'), 'cancel-request-confirm');
+        onTapCancelRequestConfirm: function (e) {
+          this.doTransaction(
+            Things.DataGlobal.t('button.cancel-request-confirm'),
+            Things.DataGlobal.t('text.want-to-cancel-request-confirm'),
+            'cancel-request-confirm'
+          );
         },
 
         /**
          * 복사
          */
-        onLabelCopy: function() {
+        onLabelCopy: function () {
           this.$['label-copy'].openCopyDialog();
         },
 
         /**
          * 승인
          */
-        onTapConfirm: function(e) {
-          this.doTransaction(Things.DataGlobal.t('button.confirm'), Things.DataGlobal.t('text.want-to-confirm'), 'confirm');
+        onTapConfirm: function (e) {
+          this.doTransaction(
+            Things.DataGlobal.t('button.confirm'),
+            Things.DataGlobal.t('text.want-to-confirm'),
+            'confirm'
+          );
         },
 
         /**
          * 버전 업
          */
-        onVersionUp: function(e) {
-          var eiditingEvents = this.events.filter(function(event) {
-            return event.status.toLowerCase() !== 'released'
+        onVersionUp: function (e) {
+          var eiditingEvents = this.events.filter(function (event) {
+            return event.status.toLowerCase() !== 'released';
           });
 
           if (eiditingEvents && eiditingEvents.length == 0) {
-            this.doTransaction(Things.DataGlobal.t('button.version-up'), Things.DataGlobal.t('text.want-to-version-up'), 'version-up');
+            this.doTransaction(
+              Things.DataGlobal.t('button.version-up'),
+              Things.DataGlobal.t('text.want-to-version-up'),
+              'version-up'
+            );
           } else {
-            this.openConfirmMsg({ type: 'warning', title: Things.DataGlobal.t('button.version-up'), text: Things.DataGlobal.t('text.can-not-version-up') });
+            this.openConfirmMsg({
+              type: 'warning',
+              title: Things.DataGlobal.t('button.version-up'),
+              text: Things.DataGlobal.t('text.can-not-version-up'),
+            });
           }
         },
 
         /**
          * 트랜잭션 처리 후 현재 버전 정보 Refresh
          */
-        refreshCurrentEvent: function(e) {
+        refreshCurrentEvent: function (e) {
           this.event = e.detail;
           this.object = e.detail;
           page(`/info/${e.detail.name}/${e.detail.version}`);
@@ -535,40 +542,46 @@ Copyright © HatioLab Inc. All rights reserved.
         /**
          * 트랜잭션 처리
          */
-        doTransaction: function(tranTitle, tranMsg, ajaxId) {
+        doTransaction: function (tranTitle, tranMsg, ajaxId) {
           var me = this;
 
-          this.openConfirmMsg({
-            type: 'info',
-            title: tranTitle,
-            text: tranMsg,
-            showCancelButton: true
-
-          }, function() {
-            var ajax = me.$[ajaxId];
-            ajax.resourceId = me.event.id;
-            ajax.generateRequest();
-          });
+          this.openConfirmMsg(
+            {
+              type: 'info',
+              title: tranTitle,
+              text: tranMsg,
+              showCancelButton: true,
+            },
+            function () {
+              var ajax = me.$[ajaxId];
+              ajax.resourceId = me.event.id;
+              ajax.generateRequest();
+            }
+          );
         },
 
         /**
          * localhost인지 아닌지에 따라 Develop mode인지 판단
          */
-        isDevelopMode: function() {
+        isDevelopMode: function () {
           return window.location.hostname == 'localhost';
         },
 
         /**
          * 선택된 버전 삭재
          */
-        onTapDelete: function(e) {
-          this.doTransaction(Things.DataGlobal.t('button.delete'), Things.DataGlobal.t('text.sure-to-delete'), 'delete');
+        onTapDelete: function (e) {
+          this.doTransaction(
+            Things.DataGlobal.t('button.delete'),
+            Things.DataGlobal.t('text.sure-to-delete'),
+            'delete'
+          );
         },
 
         /**
          * 라벨 삭제 완료 후
          */
-        _onDeleteLabelSuccess: function(event) {
+        _onDeleteLabelSuccess: function (event) {
           // 1. 라벨 삭제 후 현재 선택될 object 설정
           if (this.events.length == 1) {
             this.object = this.events[0];
@@ -584,11 +597,11 @@ Copyright © HatioLab Inc. All rights reserved.
           if (this.events.length > 1) {
             page(`/info/${this.object.id}`);
 
-          // 4. 라벨 삭제 후 같은 이름의 라벨이 존재하지 않는 경우 - 그룹별 라벨 조회 페이지로 이동
+            // 4. 라벨 삭제 후 같은 이름의 라벨이 존재하지 않는 경우 - 그룹별 라벨 조회 페이지로 이동
           } else {
             page(`/list/${this.object.group_id}`);
           }
-        }
+        },
       });
     })();
   </script>
